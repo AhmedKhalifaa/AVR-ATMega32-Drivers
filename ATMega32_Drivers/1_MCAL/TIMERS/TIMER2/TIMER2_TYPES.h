@@ -1,0 +1,78 @@
+/*
+ * TIMER2_TYPES.h
+ *
+ *      Author: Ahmed Khalifa
+ */
+
+#ifndef TIMER2_TYPES_H_
+#define TIMER2_TYPES_H_
+
+/* Section : Includes */
+
+/* Section: Data Type Declarations */
+typedef enum
+{
+	TIMER2_OPERATION_MODE_NORMAL,
+	TIMER2_OPERATION_MODE_PHASE_CORRECT_PWM,
+	TIMER2_OPERATION_MODE_CTC,
+	TIMER2_OPERATION_MODE_FAST_PWM
+} TIMER2_OperationMode_t;
+
+typedef enum
+{
+	TIMER2_OUTPUT_COMPARE_MODE_DISABLE,
+	TIMER2_OUTPUT_COMPARE_MODE_TOGGLE_ON_COMPARE_MATCH,
+	TIMER2_OUTPUT_COMPARE_MODE_CLEAR_ON_COMPARE_MATCH,
+	TIMER2_OUTPUT_COMPARE_MODE_SET_ON_COMPARE_MATCH
+} TIMER2_NonPWMOutputCompareMode_t;
+
+typedef enum
+{
+	TIMER2_FAST_PWM_OUTPUT_COMPARE_MODE_DISABLE,
+	TIMER2_FAST_PWM_OUTPUT_COMPARE_MODE_NON_INVERTING = 2,
+	TIMER2_FAST_PWM_OUTPUT_COMPARE_MODE_INVERTING = 3
+} TIMER2_FastPWMOutputCompareMode_t;
+
+
+typedef enum
+{
+	TIMER2_PHASE_CORRECT_PWM_OUTPUT_COMPARE_MODE_DISABLE,
+	TIMER2_PHASE_CORRECT_PWM_OUTPUT_COMPARE_MODE_CLEAR_ON_UP= 2,
+	TIMER2_PHASE_CORRECT_PWM_OUTPUT_COMPARE_MODE_SET_ON_UP= 3
+} TIMER2_PhaseCorrectPWMOutputCompareMode_t;
+
+typedef enum
+{
+	TIMER2_CLOCK_DISABLED,
+	TIMER2_CLOCK_DIV_1,
+	TIMER2_CLOCK_DIV_8,
+	TIMER2_CLOCK_DIV_32,
+	TIMER2_CLOCK_DIV_64,
+	TIMER2_CLOCK_DIV_128,
+	TIMER2_CLOCK_DIV_256,
+	TIMER2_CLOCK_DIV_1024,
+} TIMER2_ClockSource_t;
+
+typedef enum{
+	TIMER2_ASYNCHRONOUS_OPERATION_DISABLED,
+	TIMER2_ASYNCHRONOUS_OPERATION_ENABLED
+} TIMER2_AsynchronousOperationStatus_t;
+
+typedef struct {
+	TIMER2_ClockSource_t 					TIMER2_Clock : 3 ;
+	TIMER2_OperationMode_t					TIMER2_OperationMode : 2 ;
+	uint8_t									TIMER2_OutputCompare_Mode : 2;
+	TIMER2_AsynchronousOperationStatus_t	TIMER2_AsynchronousOperationStatus : 1;
+} TIMER2_Cfg_t;
+/* Section: Macro Declarations */
+
+/* Defining Masks for TIMER2 Registers' Bits*/
+#define TIMER2_CLOCK_SELECT_MASK			0xF8
+#define TIMER2_MODE_SELECT_MASK				0xB7
+#define TIMER2_COMPARE_MODE_SELECT_MASK		0xCF
+
+/* Section: Macro Functions Declarations */
+
+/* Section: Function Declarations */
+
+#endif /* TIMER2_TYPES_H_ */
